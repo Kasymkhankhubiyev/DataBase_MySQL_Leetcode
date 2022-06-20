@@ -1,0 +1,6 @@
+select fee.name as Employee
+from Employee as fee
+where fee.salary > (select foo.salary
+                         from Employee as foo
+                         where fee.managerId = foo.id
+)
