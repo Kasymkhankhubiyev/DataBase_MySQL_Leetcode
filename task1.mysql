@@ -20,3 +20,11 @@ select name as Customers
 from Customers
 where id not in (select distinct customerId from Orders)
 
+
+select player_id, event_date as first_login
+from Activity as a
+where event_date = (select b.event_date
+                   from Activity as b
+                   where b.player_id = a.player_id
+                    order by b.event_date
+                   limit 1)
