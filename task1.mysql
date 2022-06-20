@@ -4,3 +4,15 @@ where fee.salary > (select foo.salary
                          from Employee as foo
                          where fee.managerId = foo.id
 )
+
+select p.email as Email
+from
+    Person as p
+    join
+    (select email, count(email) as amount
+     from Person
+     group by email 
+     having count(email) > 1 )fee on p.email=fee.email
+     group by p.email
+     
+     
